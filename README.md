@@ -28,7 +28,11 @@ pip install -r requirements.txt
 python main.py
 ```
 
-This downloads the data, builds features, trains the model, and prints strategy returns versus buy and hold for the last 252 trading days.
+This downloads the data, builds features, trains the model, and prints strategy returns versus buy and hold for the last 252 trading days. It also saves a chart to `assets/backtest.png`.
+
+## Example Output
+
+![Strategy vs buy and hold backtest chart](assets/backtest.png)
 
 ## Status
 
