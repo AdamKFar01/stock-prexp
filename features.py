@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from config import DATA_DIR, TICKER
 
@@ -7,6 +8,7 @@ class StockFeatures:
 
     def build_features(self, window=20):
         df = self.data.copy()
+        # Raw Open/High/Low/Volume columns are kept as features intentionally
         df["ret_1"] = df["Close"].pct_change()
         df["ret_5"] = df["Close"].pct_change(5)
         df["ret_20"] = df["Close"].pct_change(20)
@@ -24,6 +26,6 @@ class StockFeatures:
         losses = -diff.where(diff < 0, 0)
         avg_gains = gains.rolling(window).mean()
         avg_losses = losses.rolling(window).mean()
-        rs = avg_gains / avg_losses
+        rs = avg_gains / np.maximum(avg_losses, 1e-10)  # avoid division by zero
         rsi = 100 - (100 / (1 + rs))
         return rsi
