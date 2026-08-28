@@ -2,7 +2,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 class StockModel:
     def __init__(self):
-        self.model = RandomForestRegressor(n_estimators=100)
+        self.model = RandomForestRegressor(n_estimators=100, random_state=42)
 
     def train(self, df):
         X = df.drop("target", axis=1)

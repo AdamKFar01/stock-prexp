@@ -33,6 +33,7 @@ def plot_results(df, out_path=f"{ASSETS_DIR}/backtest.png"):
     ax.plot(df.index, df["cum_bh_returns"], label="Buy & Hold", color="#adb5bd", linewidth=1.8, linestyle="--")
 
     ax.set_title("Strategy vs Buy & Hold, Last 252 Trading Days", fontsize=13, weight="bold", pad=12)
+    fig.text(0.01, 0.01, "Ticker: PAXG-USD", fontsize=8, color="#868e96")
     ax.set_ylabel("Growth of $1")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
