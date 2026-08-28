@@ -33,3 +33,7 @@ This downloads the data, builds features, trains the model, and prints strategy 
 ## Status
 
 This is an early skeleton, not a finished trading system. Known gaps are tracked in commit history and should be fixed before relying on any output.
+
+## Disclaimer
+
+This project is for educational purposes only and is not financial advice. Past performance does not guarantee future results. Use at your own risk.
