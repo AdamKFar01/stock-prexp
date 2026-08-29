@@ -40,4 +40,4 @@ This is an early skeleton, not a finished trading system. Known gaps are tracked
 
 ## Disclaimer
 
-This project is for educational purposes only and is not financial advice. Past performance does not guarantee future results. Use at your own risk.
+I built this for fun and to teach myself. Not intended for actual use or for anyone else's use.
