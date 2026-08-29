@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
-from config import DATA_DIR, TICKER
+from config import DATA_DIR, OUTPUT_CSV
 
 class StockFeatures:
     def __init__(self):
-        self.data = pd.read_csv(f"{DATA_DIR}/{TICKER}.csv", index_col="Date", parse_dates=True)
+        self.data = pd.read_csv(f"{DATA_DIR}/{OUTPUT_CSV}", index_col="Date", parse_dates=True)
 
     def build_features(self, window=20):
         df = self.data.copy()
