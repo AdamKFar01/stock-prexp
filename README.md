@@ -4,12 +4,31 @@ A simple pipeline to predict next day returns for PAXG using a Random Forest mod
 
 ## Files
 
-- `config.py`: sets the data directory and ticker symbol.
-- `dataclass.py`: downloads price history with yfinance and saves it to a CSV.
+- `config.py`: sets the data directory, CoinGecko coin id, and Alpha Vantage symbol.
+- `dataclass.py`: downloads price history (CoinGecko primary, Alpha Vantage fallback) and saves it to a CSV.
 - `features.py`: builds features like returns, moving averages, and RSI from the CSV.
 - `model.py`: trains a Random Forest to predict next day return.
 - `backtest.py`: runs the model on a holdout period and compares strategy returns to buy and hold.
 - `main.py`: runs the full pipeline, download, features, train, backtest.
+
+## Data source
+
+Price data comes from [CoinGecko](https://www.coingecko.com/en/api/documentation)'s free public API
+(no key required), using the `pax-gold` coin id. Their free tier caps history at 365 days and only
+returns Close price and Volume at daily granularity — Open/High/Low aren't available at that
+granularity on the free plan.
+
+If CoinGecko errors, rate-limits, or returns no data, the pipeline falls back to
+[Alpha Vantage](https://www.alphavantage.co/documentation/)'s `DIGITAL_CURRENCY_DAILY` endpoint,
+which does return full OHLCV. Alpha Vantage requires an API key:
+
+1. Get a free key at https://www.alphavantage.co/support/#api-key (instant, no account setup beyond an email).
+2. Set it as an environment variable before running the pipeline:
+```
+export ALPHAVANTAGE_API_KEY="your-key-here"
+```
+
+`dataclass.py` prints which source was actually used each time it runs.
 
 ## Setup
 
@@ -18,9 +37,8 @@ A simple pipeline to predict next day returns for PAXG using a Random Forest mod
 pip install -r requirements.txt
 ```
 
-2. Edit `config.py`:
+2. Edit `config.py` if you want to point at a different data folder:
 - Set `DATA_DIR` to a real folder on your machine.
-- Set `TICKER` to `PAXG-USD` so yfinance can find the data.
 
 ## Run
 
